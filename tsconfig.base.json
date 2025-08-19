@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@lombold/angular-process-engine": ["libs/process-engine/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
