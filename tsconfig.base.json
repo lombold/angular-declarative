@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@lombold/angular-form-engine": ["libs/form-engine/src/index.ts"],
       "@lombold/angular-process-engine": ["libs/process-engine/src/index.ts"]
     }
   },
