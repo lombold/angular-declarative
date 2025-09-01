@@ -1,19 +1,21 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { ADForm } from '../../form.type';
 import { FormControl, FormGroup, isFormControl, ReactiveFormsModule } from '@angular/forms';
-import { FormFieldComponent } from '@lombold/angular-form-engine';
+import { FormFieldComponent } from '../input/form-field.component';
+import { KeyValuePipe } from '@angular/common';
 
 @Component({
   selector: 'ad-form',
-  imports: [ReactiveFormsModule, FormFieldComponent],
+  imports: [ReactiveFormsModule, FormFieldComponent, KeyValuePipe],
   template: `
     <h1>{{ form().title }}</h1>
     <form [formGroup]="formGroup()">
       @for (field of form().fields; track field.name) { @if (formGroup().get(field.name); as formControl) { @if
       (isFormControl(formControl)) {
       <ad-input [control]="formControl" [input]="field" />
-        
-      } } }
+      @for (error of formControl.errors | keyvalue; track error.key) {
+      <span style="color: red">{{ error.key }}</span>
+      } } } }
     </form>
   `,
   styles: `

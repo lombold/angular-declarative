@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../../model/user';
-import { FormComponent } from '../../../../../../libs/form-engine/src/lib/angular-form-engine/ui-components/form/form.component';
-import { ADForm } from '../../../../../../libs/form-engine/src/lib/angular-form-engine/form.type';
+import { ADForm, FormComponent } from '@lombold/angular-form-engine';
 
 @Component({
   selector: 'app-user-form',
@@ -54,17 +53,4 @@ export class UserForm {
     ],
     submitButtonText: 'Submit',
   };
-
-  protected readonly userForm2 = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-  });
-
-  submit() {
-    // if (this.userForm.valid) {
-    //   alert('Form Submitted!' + JSON.stringify(this.userForm.value));
-    // }
-  }
 }

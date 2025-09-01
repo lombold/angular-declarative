@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { UserForm } from '../ui-components/user-form/user-form';
 import { User } from '../model/user';
+import { UserForm } from '../ui-components/user-form/user-form-2';
 
 @Component({
   selector: 'app-create-user-page',
   imports: [UserForm],
-  template: ` <app-user-form [user]="DEFAULT_USER" />`,
+  template: `
+    <app-user-form [user]="DEFAULT_USER" />
+  `,
   styles: `
     :host {
       display: block;
