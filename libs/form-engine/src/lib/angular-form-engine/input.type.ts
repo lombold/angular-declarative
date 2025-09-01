@@ -1,23 +1,24 @@
 import { AsyncValidatorFn, ValidatorFn } from '@angular/forms';
 
-export type Input = {
+export type ADFormField<TValue, TName extends string> = {
   type: InputTypes;
+  value: TValue;
   label: string;
-  name: string;
+  name: TName;
   placeholder?: string;
   validation?: {
     required?: boolean;
     minLength?: number;
     maxLength?: number;
     pattern?: string;
-    additionalValidators?: ReadonlyArray<ValidatorFn>;
-    additionalAsyncValidators?: ReadonlyArray<AsyncValidatorFn>;
+    additionalValidators?: Array<ValidatorFn>;
+    additionalAsyncValidators?: Array<AsyncValidatorFn>;
   };
 };
 
-export type SelectInput = Input & {
+export type ADSelectFormField<TValue, TName extends string> = ADFormField<TValue, TName> & {
   type: 'select';
-  options: ReadonlyArray<{ label: string; value: string }>;
+  options: ReadonlyArray<{ label: string; value: TValue }>;
 };
 
 export type InputTypes =

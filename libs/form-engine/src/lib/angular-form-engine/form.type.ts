@@ -1,8 +1,8 @@
-import { Input } from './input.type';
+import { ADFormField } from './input.type';
 
-export type Form = {
+export type ADForm = {
   title: string;
   description?: string;
-  fields: ReadonlyArray<Input>;
+  fields: ReadonlyArray<ADFormField<unknown, string>>;
   submitButtonText?: string;
 };

@@ -1,3 +1,3 @@
-export * from './lib/angular-form-engine/ui-components/form';
+export * from './lib/angular-form-engine/ui-components/form/form.component';
 
-export * from './lib/angular-form-engine/ui-components/input/input';
+export * from './lib/angular-form-engine/ui-components/input/form-field.component';
