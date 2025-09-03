@@ -16,7 +16,7 @@ import { ADForm, FormComponent } from '@lombold/angular-form-engine';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserForm {
+export class UserFormComponent {
   public user = input.required<User>();
 
   protected readonly userForm: ADForm = {

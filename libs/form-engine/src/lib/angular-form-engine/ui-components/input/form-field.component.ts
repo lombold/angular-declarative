@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ADFormField } from '../../input.type';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { KeyValuePipe } from '@angular/common';
 
 @Component({
   selector: 'ad-input',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, KeyValuePipe],
   template: `
     @switch (input().type) { @case ('text') {
     <input type="text" [placeholder]="input().placeholder" [formControl]="control()" />
@@ -17,6 +18,11 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     } @default {
     <div style="width: 200px; height: 50px; background-color: red; color: whitesmoke">NOT IMPLEMENTED</div>
     } }
+    <div>
+      @for (error of control().errors | keyvalue; track error.key) {
+      <span style="color: red">{{ error.key }}</span>
+      }
+    </div>
   `,
   styles: `
       :host {
