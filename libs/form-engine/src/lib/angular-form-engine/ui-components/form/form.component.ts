@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input, output } from '@an
 import { ADForm } from '../../form.type';
 import { FormControl, FormGroup, isFormControl, ReactiveFormsModule } from '@angular/forms';
 import { FormFieldComponent } from '../input/form-field.component';
+import { ToForm } from '../../form-value.type';
 
 @Component({
   selector: 'ad-form',
@@ -23,13 +24,13 @@ import { FormFieldComponent } from '../input/form-field.component';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormComponent<TValue, TForm extends ADForm> {
-  public readonly form = input.required<TForm>();
+export class FormComponent<TValue, TADForm extends ADForm<TValue>, TForm extends ToForm<TValue>> {
+  public readonly form = input.required<TADForm>();
   public readonly formGroup = computed(() => this.mapToFormGroup(this.form()));
   public readonly formSubmit = output<TValue>();
 
-  mapToFormGroup(form: TForm) {
-    const group: { [key: string]: FormControl<any> } = {};
+  mapToFormGroup(form: TADForm): FormGroup<TForm> {
+    const group: any = {};
     form.fields.map((field) => {
       group[field.name] = new FormControl<typeof field.value>(field.value, {
         validators: field.validation?.additionalValidators,

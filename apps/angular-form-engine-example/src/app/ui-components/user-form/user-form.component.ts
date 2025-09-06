@@ -6,9 +6,7 @@ import { ADForm, FormComponent } from '@lombold/angular-form-engine';
 @Component({
   selector: 'app-user-form',
   imports: [ReactiveFormsModule, FormComponent],
-  template: `
-    <ad-form [form]="userForm" />
-  `,
+  template: ` <ad-form [form]="userForm" (formSubmit)="saveUser($event)" /> `,
   styles: `
     :host {
       display: block;
@@ -19,7 +17,7 @@ import { ADForm, FormComponent } from '@lombold/angular-form-engine';
 export class UserFormComponent {
   public user = input.required<User>();
 
-  protected readonly userForm: ADForm = {
+  protected readonly userForm: ADForm<User> = {
     title: 'User Form',
     fields: [
       {
@@ -53,4 +51,8 @@ export class UserFormComponent {
     ],
     submitButtonText: 'Submit',
   };
+
+  saveUser(user: User) {
+    alert(JSON.stringify(user));
+  }
 }
