@@ -8,11 +8,13 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/angular-form-engine-example",
         "browser": "apps/angular-form-engine-example/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/angular-form-engine-example/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -21,7 +23,9 @@
             "input": "apps/angular-form-engine-example/public"
           }
         ],
-        "styles": ["apps/angular-form-engine-example/src/styles.scss"]
+        "styles": [
+          "apps/angular-form-engine-example/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -74,7 +78,9 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
       "options": {
         "reportsDirectory": "../../coverage/apps/angular-form-engine-example"
       }
