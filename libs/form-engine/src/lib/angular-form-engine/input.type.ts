@@ -1,7 +1,9 @@
 import { AsyncValidatorFn, ValidatorFn } from '@angular/forms';
 
-export type ADFormField<TValue, TName extends string> = {
-  type: InputTypes;
+export type ADFormField<TValue, TName extends string> = ADBaseFormField<TValue, TName> &
+  (ADTextFormField | ADSelectFormField<TValue>);
+
+type ADBaseFormField<TValue, TName extends string> = {
   value: TValue;
   label: string;
   name: TName;
@@ -16,12 +18,16 @@ export type ADFormField<TValue, TName extends string> = {
   };
 };
 
-export type ADSelectFormField<TValue, TName extends string> = ADFormField<TValue, TName> & {
+export type ADTextFormField = {
+  type: 'text' | 'number' | 'email' | 'password' | 'tel' | 'url';
+};
+
+export type ADSelectFormField<TValue> = {
   type: 'select';
   options: ReadonlyArray<{ label: string; value: TValue }>;
 };
 
-export type InputTypes =
+export type TextInputTypes =
   | 'text'
   | 'number'
   | 'email'

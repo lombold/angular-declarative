@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { User } from '../model/user';
+import { User, UserType } from '../model/user';
 import { UserFormComponent } from '../ui-components/user-form/user-form.component';
 
 @Component({
@@ -19,5 +19,6 @@ export class CreateUserPageComponent {
     email: '',
     firstName: '',
     lastName: '',
+    userType: UserType.Guest,
   };
 }

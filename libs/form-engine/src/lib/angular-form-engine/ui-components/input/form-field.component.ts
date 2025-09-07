@@ -7,14 +7,20 @@ import { KeyValuePipe } from '@angular/common';
   selector: 'ad-input',
   imports: [ReactiveFormsModule, KeyValuePipe],
   template: `
-    @switch (input().type) { @case ('text') {
-    <input type="text" [placeholder]="input().placeholder" [formControl]="control()" />
+    @let formField = input(); @switch (formField.type) { @case ('text') {
+    <input type="text" [placeholder]="formField.placeholder" [formControl]="control()" />
     } @case ('number') {
-    <input type="number" [placeholder]="input().placeholder" [formControl]="control()" />
+    <input type="number" [placeholder]="formField.placeholder" [formControl]="control()" />
     } @case ('email') {
-    <input type="email" [placeholder]="input().placeholder" [formControl]="control()" />
+    <input type="email" [placeholder]="formField.placeholder" [formControl]="control()" />
     } @case ('password') {
-    <input type="password" [placeholder]="input().placeholder" [formControl]="control()" />
+    <input type="password" [placeholder]="formField.placeholder" [formControl]="control()" />
+    } @case ('select') {
+    <select [formControl]="control()">
+      @for (option of formField.options; track option) {
+      <option [value]="option.value">{{ option.label }}</option>
+      }
+    </select>
     } @default {
     <div style="width: 200px; height: 50px; background-color: red; color: whitesmoke">NOT IMPLEMENTED</div>
     } }

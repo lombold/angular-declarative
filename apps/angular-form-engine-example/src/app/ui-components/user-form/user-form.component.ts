@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
-import { User } from '../../model/user';
+import { User, UserType } from '../../model/user';
 import { ADForm, FormComponent } from '@lombold/angular-form-engine';
 
 @Component({
@@ -46,6 +46,18 @@ export class UserFormComponent {
         label: 'Last Name',
         type: 'text',
         value: '',
+        validation: { additionalValidators: [Validators.required] },
+      },
+      {
+        name: 'userType',
+        label: 'Type',
+        type: 'select',
+        value: UserType.User,
+        options: [
+          { label: 'Admin', value: UserType.Admin },
+          { label: 'User', value: UserType.User },
+          { label: 'Guest', value: UserType.Guest },
+        ],
         validation: { additionalValidators: [Validators.required] },
       },
     ],
