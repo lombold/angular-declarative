@@ -27,16 +27,4 @@ export type ADSelectFormField<TValue> = {
   options: ReadonlyArray<{ label: string; value: TValue }>;
 };
 
-export type TextInputTypes =
-  | 'text'
-  | 'number'
-  | 'email'
-  | 'password'
-  | 'tel'
-  | 'url'
-  | 'date'
-  | 'checkbox'
-  | 'radio'
-  | 'select'
-  | 'textarea'
-  | 'custom';
+export type TextInputTypes = 'date' | 'checkbox' | 'radio' | 'textarea' | 'custom';
