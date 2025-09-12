@@ -1,13 +1,13 @@
 import { AsyncValidatorFn, ValidatorFn } from '@angular/forms';
 
-export type ADFormField<TValue, TName extends string> = ADBaseFormField<TValue, TName> &
-  (ADTextFormField | ADSelectFormField<TValue>);
+export type ADFormField<TValue, TName extends string> =
+  | ADFormGroup<TValue, TName>
+  | (ADBaseFormField<TValue, TName> & (ADTextFormField | ADSelectFormField<TValue>));
 
 type ADBaseFormField<TValue, TName extends string> = {
   value: TValue;
   label: string;
   name: TName;
-  placeholder?: string;
   validation?: {
     required?: boolean;
     minLength?: number;
@@ -20,11 +20,18 @@ type ADBaseFormField<TValue, TName extends string> = {
 
 export type ADTextFormField = {
   type: 'text' | 'number' | 'email' | 'password' | 'tel' | 'url';
+  placeholder?: string;
 };
 
 export type ADSelectFormField<TValue> = {
   type: 'select';
   options: ReadonlyArray<{ label: string; value: TValue }>;
+};
+
+export type ADFormGroup<TValue, TName extends string> = {
+  type: 'group';
+  name: TName;
+  fields: ReadonlyArray<ADFormField<TValue[keyof TValue], Extract<keyof TValue, string>>>;
 };
 
 export type TextInputTypes = 'date' | 'checkbox' | 'radio' | 'textarea' | 'custom';

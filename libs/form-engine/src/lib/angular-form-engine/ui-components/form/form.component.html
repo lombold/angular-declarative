@@ -1,0 +1,22 @@
+<h1>{{ form().title }}</h1>
+@if (formGroup(); as formGroup) {
+  <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    @for (field of form().fields; track field.name) {
+      @if (formGroup.get(field.name); as formControl) {
+        <ng-container *ngTemplateOutlet="formField; context: { formControl, field }" />
+      }
+    }
+    <ng-template #formField let-formControl="formControl" let-field="field">
+      @if (isFormControl(formControl)) {
+        <ad-input [control]="formControl" [field]="field" />
+      } @else if (isFormGroup(formControl)) {
+        <!--        @for (field of fields; track field.name) {-->
+          <!--          @if (formGroup.get(field.name); as formControl) {-->
+          <!--            <ng-container *ngTemplateOutlet="formField; context: { abstractControl: formControl, field }" />-->
+          <!--          }-->
+          <!--        }-->
+      }
+    </ng-template>
+    <button type="submit" [disabled]="formGroup.invalid">{{ form().submitButtonText || 'Submit' }}</button>
+  </form>
+}
