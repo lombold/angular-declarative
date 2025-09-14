@@ -10,11 +10,14 @@
       @if (isFormControl(formControl)) {
         <ad-input [control]="formControl" [field]="field" />
       } @else if (isFormGroup(formControl)) {
-        <!--        @for (field of fields; track field.name) {-->
-          <!--          @if (formGroup.get(field.name); as formControl) {-->
-          <!--            <ng-container *ngTemplateOutlet="formField; context: { abstractControl: formControl, field }" />-->
-          <!--          }-->
-          <!--        }-->
+        @let fields = field.fields || [];
+        @for (innerField of fields; track innerField.name) {
+          @if (formControl.get(innerField.name); as innerFormControl) {
+            <ng-container
+              *ngTemplateOutlet="formField;
+              context: { formControl: innerFormControl, field:  innerField }" />
+          }
+        }
       }
     </ng-template>
     <button type="submit" [disabled]="formGroup.invalid">{{ form().submitButtonText || 'Submit' }}</button>

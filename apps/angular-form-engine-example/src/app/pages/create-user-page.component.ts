@@ -19,6 +19,11 @@ export class CreateUserPageComponent {
     email: '',
     firstName: '',
     lastName: '',
+    address: {
+      street: '',
+      city: '',
+      plz: 0,
+    },
     userType: UserType.Guest,
   };
 }

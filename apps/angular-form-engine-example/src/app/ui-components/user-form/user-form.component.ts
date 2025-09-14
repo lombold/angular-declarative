@@ -49,6 +49,33 @@ export class UserFormComponent {
         validation: { additionalValidators: [Validators.required] },
       },
       {
+        name: 'address',
+        type: 'group',
+        fields: [
+          {
+            name: 'street',
+            label: 'Street',
+            type: 'text',
+            value: '',
+            validation: { additionalValidators: [Validators.required] },
+          },
+          {
+            name: 'plz',
+            label: 'PLZ',
+            type: 'number',
+            value: '',
+            validation: { additionalValidators: [Validators.required] },
+          },
+          {
+            name: 'city',
+            label: 'City',
+            type: 'text',
+            value: '',
+            validation: { additionalValidators: [Validators.required] },
+          },
+        ],
+      },
+      {
         name: 'userType',
         label: 'Type',
         type: 'select',

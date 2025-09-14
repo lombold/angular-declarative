@@ -3,6 +3,11 @@ export type User = {
   email: string;
   firstName: string;
   lastName: string;
+  address: {
+    street: string;
+    plz: number;
+    city: string;
+  };
   userType: UserType;
 };
 

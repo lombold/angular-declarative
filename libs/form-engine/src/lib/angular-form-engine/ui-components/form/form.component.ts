@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, computed, input, output } from '@an
 import { ADForm } from '../../form.type';
 import { FormControl, FormGroup, isFormControl, isFormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ToForm } from '../../form-value.type';
+import { ADFormField } from '../../input.type';
 import { NgTemplateOutlet } from '@angular/common';
 import { FormFieldComponent } from '../input/form-field.component';
-import { ADFormField } from '../../input.type';
 
 @Component({
   selector: 'ad-form',
-  imports: [ReactiveFormsModule, NgTemplateOutlet, FormFieldComponent],
+  imports: [ReactiveFormsModule, FormFieldComponent, NgTemplateOutlet],
   templateUrl: './form.component.html',
   styles: `
       :host {
@@ -24,6 +24,7 @@ export class FormComponent<TValue, TADForm extends ADForm<TValue>, TForm extends
 
   mapToForm(form: TADForm): FormGroup<TForm> {
     const group = this.mapToFormGroup(form.fields);
+    console.log(group);
     return new FormGroup(group);
   }
 
@@ -31,7 +32,7 @@ export class FormComponent<TValue, TADForm extends ADForm<TValue>, TForm extends
     const group: any = {};
     fields.map((field) => {
       if (field.type === 'group') {
-        group[field.name] = this.mapToFormGroup(field.fields);
+        group[field.name] = new FormGroup(this.mapToFormGroup(field.fields));
         return;
       }
       group[field.name] = new FormControl<typeof field.value>(field.value, {

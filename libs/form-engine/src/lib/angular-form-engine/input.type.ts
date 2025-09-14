@@ -1,8 +1,9 @@
 import { AsyncValidatorFn, ValidatorFn } from '@angular/forms';
 
-export type ADFormField<TValue, TName extends string> =
-  | ADFormGroup<TValue, TName>
-  | (ADBaseFormField<TValue, TName> & (ADTextFormField | ADSelectFormField<TValue>));
+export type ADFormField<TValue, TName extends string> = ADFormGroup<TValue, TName> | ADFormControlField<TValue, TName>;
+
+export type ADFormControlField<TValue, TName extends string> = ADBaseFormField<TValue, TName> &
+  (ADTextFormField | ADSelectFormField<TValue>);
 
 type ADBaseFormField<TValue, TName extends string> = {
   value: TValue;
@@ -31,7 +32,8 @@ export type ADSelectFormField<TValue> = {
 export type ADFormGroup<TValue, TName extends string> = {
   type: 'group';
   name: TName;
-  fields: ReadonlyArray<ADFormField<TValue[keyof TValue], Extract<keyof TValue, string>>>;
+  fields: any[];
+  // fields: ReadonlyArray<ADFormField<TValue[keyof TValue], Extract<keyof TValue, string>>>;
 };
 
 export type TextInputTypes = 'date' | 'checkbox' | 'radio' | 'textarea' | 'custom';

@@ -1,20 +1,25 @@
 @let formField = field();
 
+<label [for]="formField.name">{{ formField.label }}</label>
 @switch (formField.type) {
   @case ('text') {
-    <input type="text" [placeholder]="formField.placeholder ?? ''" [formControl]="control()" />
+    <input type="text" [name]="formField.name" [id]="formField.name" [placeholder]="formField.placeholder ?? ''"
+           [formControl]="control()" />
   }
   @case ('number') {
-    <input type="number" [placeholder]="formField.placeholder ?? ''" [formControl]="control()" />
+    <input type="number" [name]="formField.name" [id]="formField.name" [placeholder]="formField.placeholder ?? ''"
+           [formControl]="control()" />
   }
   @case ('email') {
-    <input type="email" [placeholder]="formField.placeholder ?? ''" [formControl]="control()" />
+    <input type="email" [name]="formField.name" [id]="formField.name" [placeholder]="formField.placeholder ?? ''"
+           [formControl]="control()" />
   }
   @case ('password') {
-    <input type="password" [placeholder]="formField.placeholder ?? ''" [formControl]="control()" />
+    <input type="password" [name]="formField.name" [id]="formField.name" [placeholder]="formField.placeholder ?? ''"
+           [formControl]="control()" />
   }
   @case ('select') {
-    <select [formControl]="control()">
+    <select [formControl]="control()" [name]="formField.name" [id]="formField.name">
       @for (option of formField.options; track option) {
         <option [value]="option.value">{{ option.label }}</option>
       }
