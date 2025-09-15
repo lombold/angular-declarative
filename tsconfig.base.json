@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@lombold/angular-form-engine": ["libs/form-engine/src/index.ts"],
+      "@lombold/angular-page-engine": ["libs/page-engine/src/index.ts"],
       "@lombold/angular-process-engine": ["libs/process-engine/src/index.ts"]
     }
   },
