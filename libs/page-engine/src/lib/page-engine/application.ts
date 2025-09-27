@@ -1,0 +1,52 @@
+import { bootstrapApplication } from '@angular/platform-browser';
+import { ApplicationRef, Component, inject, provideZoneChangeDetection } from '@angular/core';
+import { ActivatedRoute, provideRouter, RouterOutlet, Routes } from '@angular/router';
+import { Page } from './types/page';
+import { map } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'app-root',
+  template: ` <router-outlet />`,
+  imports: [RouterOutlet],
+})
+class RootComponent {}
+
+@Component({
+  selector: 'lib-page',
+  template: ` <h1>{{ title | async }}</h1> `,
+  imports: [AsyncPipe],
+})
+class PageComponent {
+  readonly pageData = inject(ActivatedRoute).data;
+  protected readonly title = this.pageData.pipe(map((p) => p['title']));
+}
+
+export function application(...pages: any[]): Promise<ApplicationRef> {
+  return bootstrapApplication(RootComponent, {
+    providers: [provideZoneChangeDetection(), provideRouter(createRoutes(pages))],
+  });
+}
+
+export function page(title: string): Page {
+  return {
+    title,
+    component: PageComponent,
+  };
+}
+
+function createRoutes(pages: Page[]): Routes {
+  const pageNavigationEntries = pages.map((page) => ({
+    path: page.title,
+    component: page.component,
+    data: { title: page.title },
+  }));
+  return [
+    ...pageNavigationEntries,
+    {
+      path: '**',
+      redirectTo: pageNavigationEntries.length ? pageNavigationEntries[0].path : '',
+    },
+  ];
+}
