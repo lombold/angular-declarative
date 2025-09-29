@@ -17,15 +17,14 @@
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
-        "project": "libs/form-engine/ng-package.json"
+        "project": "libs/form-engine/ng-package.json",
+        "tsConfig": "libs/form-engine/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "libs/form-engine/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "libs/form-engine/tsconfig.lib.json"
-        }
+        "development": {}
       },
       "defaultConfiguration": "production"
     },

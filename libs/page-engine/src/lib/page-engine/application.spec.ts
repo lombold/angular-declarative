@@ -1,14 +1,22 @@
-import { application, page } from './application';
+import { application, HeaderComponent, page } from './application';
 import { beforeEach, expect } from 'vitest';
-import { TestComponentRenderer } from '@angular/core/testing';
+import { Component, DebugElement, destroyPlatform } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'header',
+  template: ` <nav>Mock Navigation</nav> `,
+})
+class MockHeaderComponent extends HeaderComponent {}
 
 describe('Application', () => {
+  let debugElement: DebugElement;
+
   beforeEach(() => {
-    console.log('bla');
-    // document.body.innerHTML = '<app-root></app-root>';
-    const bla = new TestComponentRenderer();
-    bla.insertRootElement('app-root');
-    //destroyPlatform();
+    document.body.innerHTML = '<app-root id="app-root" />';
+    destroyPlatform();
+    debugElement = new DebugElement(document.body.children.namedItem('app-root') as HTMLElement);
   });
 
   it('should create', async () => {
@@ -19,9 +27,19 @@ describe('Application', () => {
   });
 
   it('should create with one page', async () => {
-    const app = await application(page('Home'));
+    const app = await application(MockHeaderComponent, page('Home'));
 
-    expect(app).toBeTruthy();
+    expect(debugElement.nativeElement.innerHTML).toContain('Home');
+    app.destroy();
+  });
+
+  it('should create with two pages', async () => {
+    const app = await application(MockHeaderComponent, page('Home'), page('About'));
+
+    await app.injector.get(Router).navigate(['about']);
+    app.tick();
+
+    expect(debugElement.nativeElement.innerHTML).toContain('About');
     app.destroy();
   });
 });
