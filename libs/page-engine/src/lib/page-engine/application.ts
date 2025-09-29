@@ -3,9 +3,9 @@ import { ApplicationRef, provideBrowserGlobalErrorListeners, provideZoneChangeDe
 import { provideRouter, Routes } from '@angular/router';
 import { Page } from './types/page';
 import { HEADER_COMPONENT } from './tokens';
-import { HeaderComponent } from './ui-components/header.component';
 import { PageComponent } from './ui-components/page.component';
 import { RootComponent } from './ui-components/root.component';
+import { HeaderComponent } from './ui-components/header.component';
 
 export function application<THeader extends HeaderComponent>(
   header?: Type<THeader>,

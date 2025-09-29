@@ -9,32 +9,29 @@ interface NavItem {
 }
 
 @Component({
-  selector: 'nav',
+  selector: 'lib-nav',
   imports: [RouterLink, NgTemplateOutlet],
   template: `
-    <ul>
-      @for (item of navTree; track item) {
-      <ng-container *ngTemplateOutlet="render; context: { $implicit: item }"></ng-container>
-      }
-    </ul>
-
-    <ng-template #render let-item>
-      <li>
-        <a [routerLink]="item.url">{{ item.label }}</a>
-        @if (item.children.length) {
-        <ul>
-          @for (child of item.children; track child) {
-          <ng-container *ngTemplateOutlet="render; context: { $implicit: child }"></ng-container>
-          }
-        </ul>
+    <nav>
+      <ul>
+        @for (item of navTree; track item) {
+        <ng-container *ngTemplateOutlet="render; context: { $implicit: item }"></ng-container>
         }
-      </li>
-    </ng-template>
-  `,
-  styles: `
-      :host {
-          display: block;
-      }
+      </ul>
+
+      <ng-template #render let-item>
+        <li>
+          <a [routerLink]="item.url">{{ item.label }}</a>
+          @if (item.children.length) {
+          <ul>
+            @for (child of item.children; track child) {
+            <ng-container *ngTemplateOutlet="render; context: { $implicit: child }"></ng-container>
+            }
+          </ul>
+          }
+        </li>
+      </ng-template>
+    </nav>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
