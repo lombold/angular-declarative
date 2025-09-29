@@ -43,12 +43,12 @@ export function textPage(title: string, text?: string): Page {
   };
 }
 
-export function htmlPage(title: string, text?: string): Page {
+export function htmlPage(title: string, html: string): Page {
   return {
     title,
     component: HtmlPageComponent,
     data: {
-      html: text ?? `This is the ${title} page.`,
+      html,
     },
   };
 }
