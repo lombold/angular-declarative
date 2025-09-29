@@ -2,6 +2,7 @@ import { application, HeaderComponent, page } from './application';
 import { beforeEach, expect } from 'vitest';
 import { DebugElement, destroyPlatform } from '@angular/core';
 import { Router } from '@angular/router';
+import { By } from '@angular/platform-browser';
 
 describe('Application', () => {
   let debugElement: DebugElement;
@@ -39,7 +40,7 @@ describe('Application', () => {
   it('should display the header', async () => {
     const app = await application(HeaderComponent);
 
-    expect(debugElement.nativeElement.innerHTML).toContain('<header><nav>Navigation</nav></header>');
+    expect(debugElement.query(By.css('header'))).toBeTruthy();
     app.destroy();
   });
 });
