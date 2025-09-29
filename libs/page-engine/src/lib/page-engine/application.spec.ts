@@ -1,4 +1,4 @@
-import { application, page } from './application';
+import { application, htmlPage, page, textPage } from './application';
 import { beforeEach, expect } from 'vitest';
 import { DebugElement, destroyPlatform } from '@angular/core';
 import { Router } from '@angular/router';
@@ -42,6 +42,20 @@ describe('Application', () => {
     const app = await application(HeaderComponent);
 
     expect(debugElement.query(By.css('header'))).toBeTruthy();
+    app.destroy();
+  });
+
+  it('should display a simple text page', async () => {
+    const app = await application(HeaderComponent, textPage('Home', 'Welcome to the Home page!'));
+
+    expect(debugElement.nativeElement.innerHTML).toContain('Welcome to the Home page!');
+    app.destroy();
+  });
+
+  it('should display a html text page', async () => {
+    const app = await application(HeaderComponent, htmlPage('Address', '<address>Anystreet 2 <br> Anytown</address>'));
+
+    expect(debugElement.nativeElement.innerHTML).toContain('<address>Anystreet 2 <br> Anytown</address>');
     app.destroy();
   });
 });
