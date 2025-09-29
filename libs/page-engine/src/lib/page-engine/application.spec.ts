@@ -1,8 +1,9 @@
-import { application, HeaderComponent, page } from './application';
+import { application, page } from './application';
 import { beforeEach, expect } from 'vitest';
 import { DebugElement, destroyPlatform } from '@angular/core';
 import { Router } from '@angular/router';
 import { By } from '@angular/platform-browser';
+import { HeaderComponent } from './ui-components/header.component';
 
 describe('Application', () => {
   let debugElement: DebugElement;
