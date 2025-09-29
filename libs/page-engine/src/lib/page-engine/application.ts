@@ -3,16 +3,21 @@ import { ApplicationRef, Component, inject, provideZoneChangeDetection, Type } f
 import { ActivatedRoute, provideRouter, RouterOutlet, Routes } from '@angular/router';
 import { Page } from './types/page';
 import { map } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgComponentOutlet } from '@angular/common';
 import { HEADER_COMPONENT } from './tokens';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
-  template: ` <router-outlet />`,
-  imports: [RouterOutlet],
+  template: `
+    <ng-container *ngComponentOutlet="headerComponent" />
+    <router-outlet />
+  `,
+  imports: [RouterOutlet, NgComponentOutlet],
 })
-class RootComponent {}
+class RootComponent {
+  protected readonly headerComponent = inject(HEADER_COMPONENT);
+}
 
 @Component({
   selector: 'lib-page',
@@ -25,7 +30,6 @@ class PageComponent {
 }
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'header',
   template: ` <nav>Navigation</nav> `,
   imports: [],
