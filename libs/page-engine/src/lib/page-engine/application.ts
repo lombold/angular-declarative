@@ -26,10 +26,10 @@ export function application<THeader extends HeaderComponent>(
   });
 }
 
-export function page(title: string): Page {
+export function page(title: string, component: Type<any> = PageComponent): Page {
   return {
     title,
-    component: PageComponent,
+    component,
   };
 }
 

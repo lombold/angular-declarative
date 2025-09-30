@@ -1,9 +1,15 @@
 import { application, htmlPage, page, textPage } from './application';
 import { beforeEach, expect } from 'vitest';
-import { DebugElement, destroyPlatform } from '@angular/core';
+import { Component, DebugElement, destroyPlatform } from '@angular/core';
 import { Router } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { HeaderComponent } from './ui-components/header.component';
+
+@Component({
+  selector: 'app-custom-page',
+  template: `<h2>This is a custom page</h2>`,
+})
+class CustomPageComponent {}
 
 describe('Application', () => {
   let debugElement: DebugElement;
@@ -42,6 +48,13 @@ describe('Application', () => {
     const app = await application(HeaderComponent);
 
     expect(debugElement.query(By.css('header'))).toBeTruthy();
+    app.destroy();
+  });
+
+  it('should display a component page', async () => {
+    const app = await application(HeaderComponent, page('Custom', CustomPageComponent));
+
+    expect(debugElement.nativeElement.innerHTML).toContain('This is a custom page');
     app.destroy();
   });
 

@@ -1,4 +1,5 @@
 import { application, HeaderComponent, htmlPage, page, textPage } from '@lombold/angular-page-engine';
+import { CustomComponent } from './ui-components/custom-component';
 
 application(
   HeaderComponent,
@@ -21,6 +22,7 @@ application(
       123 Main St.<br />
       Anytown, USA<br />
     </address>
-    `
-  )
+  `
+  ),
+  page('Custom Component', CustomComponent)
 ).catch((reason) => console.log(reason));
