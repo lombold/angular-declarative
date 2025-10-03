@@ -8,6 +8,8 @@ import { HeaderComponent } from './ui-components/header.component';
 import { PageComponent } from './ui-components/pages/page.component';
 import { TextPageComponent } from './ui-components/pages/text-page.component';
 import { HtmlPageComponent } from './ui-components/pages/html-page.component';
+import { ADForm } from '@lombold/angular-form-engine';
+import { AutoFormComponent } from '../../../../../apps/angular-page-engine-example/src/ui-components/auto-form.component';
 
 export function application<THeader extends HeaderComponent>(
   header?: Type<THeader>,
@@ -50,6 +52,17 @@ export function htmlPage(title: string, html: string): Page {
     component: HtmlPageComponent,
     data: {
       html,
+    },
+  };
+}
+
+export function formPage<T>(title: string, form: ADForm<T>): Page {
+  return {
+    title,
+    component: AutoFormComponent<T>,
+    data: {
+      title,
+      form,
     },
   };
 }

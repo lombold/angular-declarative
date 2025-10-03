@@ -1,6 +1,7 @@
-import { application, HeaderComponent, htmlPage, page, textPage } from '@lombold/angular-page-engine';
+import { application, formPage, HeaderComponent, htmlPage, page, textPage } from '@lombold/angular-page-engine';
 import { CustomComponent } from './ui-components/custom-component';
 import { SubPage } from './ui-components/sub-page';
+import { userForm } from './forms/user-form';
 
 application(
   HeaderComponent,
@@ -29,5 +30,6 @@ application(
   page('Component with children', SubPage, [
     htmlPage('Child 1', '<p>Wichtige Seite</p>'),
     htmlPage('Child 2', '<a href="https://example.com">Example Link</a>'),
+    formPage('User Form', userForm),
   ])
 ).catch((reason) => console.log(reason));
