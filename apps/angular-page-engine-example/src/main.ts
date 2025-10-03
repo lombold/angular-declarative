@@ -1,5 +1,6 @@
 import { application, HeaderComponent, htmlPage, page, textPage } from '@lombold/angular-page-engine';
 import { CustomComponent } from './ui-components/custom-component';
+import { SubPage } from './ui-components/sub-page';
 
 application(
   HeaderComponent,
@@ -24,5 +25,9 @@ application(
     </address>
   `
   ),
-  page('Custom Component', CustomComponent)
+  page('Custom Component', CustomComponent),
+  page('Component with children', SubPage, [
+    htmlPage('Child 1', '<p>Wichtige Seite</p>'),
+    htmlPage('Child 2', '<a href="https://example.com">Example Link</a>'),
+  ])
 ).catch((reason) => console.log(reason));

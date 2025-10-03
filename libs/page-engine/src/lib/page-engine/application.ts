@@ -26,10 +26,11 @@ export function application<THeader extends HeaderComponent>(
   });
 }
 
-export function page(title: string, component: Type<any> = PageComponent): Page {
+export function page(title: string, component: Type<any> = PageComponent, subPages?: Page[]): Page {
   return {
     title,
     component,
+    children: subPages,
   };
 }
 
@@ -54,12 +55,16 @@ export function htmlPage(title: string, html: string): Page {
 }
 
 function createRoutes(pages: Page[]): Routes {
-  const pageNavigationEntries = pages.map((page) => ({
-    path: toKebabCase(page.title),
-    title: page.title,
-    component: page.component,
-    data: { title: page.title, ...page.data },
-  }));
+  const pageNavigationEntries: Routes = pages.map((page) => {
+    return {
+      path: toKebabCase(page.title),
+      title: page.title,
+      component: page.component,
+      data: { title: page.title, ...page.data },
+      children: page.children ? createRoutes(page.children) : [],
+    };
+  });
+  console.log(pageNavigationEntries);
   return [
     ...pageNavigationEntries,
     {

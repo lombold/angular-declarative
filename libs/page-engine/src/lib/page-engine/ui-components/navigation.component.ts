@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Route, Router, RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Route, RouterLink, Routes } from '@angular/router';
 import { NgTemplateOutlet } from '@angular/common';
 
 interface NavItem {
@@ -14,7 +14,7 @@ interface NavItem {
   template: `
     <nav>
       <ul>
-        @for (item of navTree; track item) {
+        @for (item of navTree(); track item) {
         <ng-container *ngTemplateOutlet="render; context: { $implicit: item }"></ng-container>
         }
       </ul>
@@ -36,22 +36,20 @@ interface NavItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent {
-  private router = inject(Router);
-  navTree: NavItem[];
+  public readonly routes = input.required<Routes>();
+  public readonly basePath = input<string | undefined>(undefined);
+  public readonly deep = input<boolean>(false);
+  protected readonly navTree = computed(() => this.mapRoutes(this.routes(), this.deep(), this.basePath()));
 
-  constructor() {
-    this.navTree = this.mapRoutes(this.router.config);
-  }
-
-  private mapRoutes(routes: Route[], parentPath: string = ''): NavItem[] {
+  private mapRoutes(routes: Route[], deep: boolean, parentPath?: string): NavItem[] {
     return routes
       .filter((r) => r.path && !r.redirectTo) // skip redirects / empty paths
       .map((r) => {
-        const fullPath = parentPath + '/' + r.path;
+        const fullPath = parentPath ? parentPath + '/' + r.path : r.path ?? '';
         return {
           label: r.title?.toString() ?? r.path ?? 'undefined',
           url: fullPath,
-          children: r.children ? this.mapRoutes(r.children, fullPath) : [],
+          children: deep && r.children ? this.mapRoutes(r.children, deep, fullPath) : [],
         };
       });
   }
