@@ -1,1 +1,159 @@
-/* You can add global styles to this file, and also import other style files */
+/* Reset & base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: system-ui, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  height: 100%;
+  line-height: 1.5;
+}
+
+/* Layout */
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background: #111;
+  color: #fff;
+  padding: 1rem 2rem;
+}
+
+/* Main content below nav/banner */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 2rem;
+  gap: 1rem;
+}
+
+/* Top Navigation */
+lib-nav nav {
+  display: flex;
+}
+
+lib-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+lib-nav li a {
+  text-decoration: none;
+  color: #ddd;
+  padding: 0.5rem 0.75rem;
+  transition: color 0.2s ease, background 0.2s ease;
+  border-radius: 6px;
+}
+
+lib-nav li a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Subpage */
+app-sub-page {
+  margin-top: 0;
+}
+
+/* Sub Navigation Banner */
+app-sub-page lib-nav {
+  display: block;
+  width: 100%;
+  background: #f0f0f0;
+  border-radius: 0;
+  padding: 0.75rem 2rem;
+  margin: 0;
+  border-top: 1px solid #ddd;
+}
+
+/* Banner layout: title + pills */
+app-sub-page lib-nav nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Subpage Title inside Banner */
+app-sub-page h2 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Sub Navigation Pills */
+app-sub-page lib-nav ul {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+app-sub-page lib-nav li a {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  background: #e0e0e0;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+app-sub-page lib-nav li a:hover {
+  background: #0077ff;
+  color: #fff;
+}
+
+/* Active Pill */
+app-sub-page lib-nav li a.active {
+  background: #0077ff;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Content */
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+article {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+article a {
+  color: #0077ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+article a:hover {
+  text-decoration: underline;
+}
+
+/* Footer placeholder */
+footer {
+  background: #111;
+  color: #bbb;
+  text-align: center;
+  padding: 1rem;
+}
