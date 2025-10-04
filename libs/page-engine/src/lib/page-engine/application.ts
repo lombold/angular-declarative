@@ -10,6 +10,7 @@ import { TextPageComponent } from './ui-components/pages/text-page.component';
 import { HtmlPageComponent } from './ui-components/pages/html-page.component';
 import { ADForm } from '@lombold/angular-form-engine';
 import { AutoFormComponent } from '../../../../../apps/angular-page-engine-example/src/ui-components/auto-form.component';
+import { ObservableInput } from 'rxjs';
 
 export function application<THeader extends HeaderComponent>(
   header?: Type<THeader>,
@@ -56,13 +57,16 @@ export function htmlPage(title: string, html: string): Page {
   };
 }
 
-export function formPage<T>(title: string, form: ADForm<T>): Page {
+export type SubmitFunction<T> = (value: T) => ObservableInput<unknown>;
+
+export function formPage<T>(title: string, form: ADForm<T>, submitFn: SubmitFunction<T>): Page {
   return {
     title,
     component: AutoFormComponent<T>,
     data: {
       title,
       form,
+      submitFn,
     },
   };
 }

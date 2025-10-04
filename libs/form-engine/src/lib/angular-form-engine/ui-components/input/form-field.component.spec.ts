@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormComponent } from '../form/form.component';
 import { ADForm } from '../../form.type';
 import { FormGroup } from '@angular/forms';
+import { ToForm } from '../../form-value.type';
 
 type TestForm = {
   name: string;
@@ -30,6 +31,7 @@ describe('FormComponent', () => {
         ],
       },
     ],
+    title: '',
   };
 
   beforeEach(async () => {
