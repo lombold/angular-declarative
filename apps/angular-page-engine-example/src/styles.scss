@@ -1,19 +1,26 @@
-/* Reset & base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* === Base === */
+:root {
+  --color-bg: #f7f7f7;
+  --color-primary: #0078d4;
+  --color-primary-hover: #005fa3;
+  --color-text: #222;
+  --color-border: #ddd;
+  --color-muted: #666;
+  --color-white: #fff;
+  --radius: 6px;
+  --spacing: 1rem;
+  --font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 body, html {
-  font-family: system-ui, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  height: 100%;
-  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  font-family: var(--font-family);
+  color: var(--color-text);
 }
 
-/* Layout */
+/* === Layout === */
 app-root {
   display: flex;
   flex-direction: column;
@@ -21,216 +28,140 @@ app-root {
 }
 
 header {
-  background: #111;
-  color: #fff;
-  padding: 1rem 2rem;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem var(--spacing);
 }
 
-/* Main content below nav/banner */
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem 2rem;
-  gap: 1rem;
-}
-
-/* Top Navigation */
-lib-nav nav {
-  display: flex;
-}
-
-lib-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
-}
-
-lib-nav li a {
-  text-decoration: none;
-  color: #ddd;
-  padding: 0.5rem 0.75rem;
-  transition: color 0.2s ease, background 0.2s ease;
-  border-radius: 6px;
-}
-
-lib-nav li a:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* Subpage */
+/* Make subpage fill full width */
+main,
 app-sub-page {
-  margin-top: 0;
-}
-
-/* Sub Navigation Banner */
-app-sub-page lib-nav {
   display: block;
   width: 100%;
-  background: #f0f0f0;
-  border-radius: 0;
-  padding: 0.75rem 2rem;
-  margin: 0;
-  border-top: 1px solid #ddd;
+  padding: 2rem 3rem;
+  box-sizing: border-box;
 }
 
-/* Banner layout: title + pills */
-app-sub-page lib-nav nav {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-/* Subpage Title inside Banner */
-app-sub-page h2 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #333;
-  margin: 0;
-  flex-shrink: 0;
-}
-
-/* Sub Navigation Pills */
-app-sub-page lib-nav ul {
-  display: flex;
-  gap: 0.5rem;
+/* === Navigation === */
+lib-nav nav ul {
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
   margin: 0;
   padding: 0;
 }
 
-app-sub-page lib-nav li a {
-  display: inline-block;
-  padding: 0.35rem 0.9rem;
-  background: #e0e0e0;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  color: #333;
+lib-nav nav a {
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-app-sub-page lib-nav li a:hover {
-  background: #0077ff;
-  color: #fff;
-}
-
-/* Active Pill */
-app-sub-page lib-nav li a.active {
-  background: #0077ff;
-  color: #fff;
-  font-weight: 600;
-}
-
-/* Content */
-h1 {
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
-  font-weight: 600;
-}
-
-article {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-article a {
-  color: #0077ff;
-  text-decoration: none;
+  color: var(--color-primary);
   font-weight: 500;
+  transition: color 0.2s;
 }
 
-article a:hover {
-  text-decoration: underline;
+lib-nav nav a:hover {
+  color: var(--color-primary-hover);
 }
 
-/* Base form wrapper */
+/* === Sub page header === */
+app-sub-page header {
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--spacing);
+  padding-bottom: 0.5rem;
+}
+
+app-sub-page h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.4rem;
+}
+
+/* === Form === */
 ad-form {
   display: block;
-  max-width: 500px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background: var(--color-white);
+  padding: 2rem 2.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
 }
 
-/* Form title */
 ad-form h1 {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  margin-top: 0;
   margin-bottom: 1.5rem;
-  text-align: center;
-  color: #222;
+  text-align: left;
 }
 
-/* Each input block */
+/* Flex layout: vertical stacking */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Input fields - each full width */
 ad-input {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  width: 100%;
 }
 
-/* Labels */
 ad-input label {
-  font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 0.4rem;
-  color: #444;
 }
 
-/* Inputs, selects */
 ad-input input,
 ad-input select {
-  padding: 0.5rem 0.75rem;
-  font-size: 0.95rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-white);
+  font-size: 1rem;
+  color: var(--color-text);
+  transition: border-color 0.2s;
 }
 
 ad-input input:focus,
 ad-input select:focus {
-  border-color: #0077ff;
-  box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.15);
+  border-color: var(--color-primary);
+  outline: none;
 }
 
 /* Submit button */
-ad-form button[type="submit"] {
-  display: inline-block;
-  width: 100%;
-  padding: 0.65rem;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #fff;
-  background: #0077ff;
+button[type="submit"] {
+  margin-top: 1.5rem;
+  align-self: flex-end;
+  background: var(--color-primary);
+  color: var(--color-white);
   border: none;
-  border-radius: 6px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  border-radius: var(--radius);
   cursor: pointer;
   transition: background 0.2s;
 }
 
-ad-form button[type="submit"]:hover:not(:disabled) {
-  background: #005fcc;
+button[type="submit"]:hover:not(:disabled) {
+  background: var(--color-primary-hover);
 }
 
-ad-form button[type="submit"]:disabled {
-  background: #ccc;
+button[disabled] {
+  background: var(--color-border);
   cursor: not-allowed;
+  color: var(--color-muted);
 }
 
+/* === Responsive === */
+@media (max-width: 700px) {
+  main, app-sub-page {
+    padding: 1rem;
+  }
 
-/* Footer placeholder */
-footer {
-  background: #111;
-  color: #bbb;
-  text-align: center;
-  padding: 1rem;
+  ad-form {
+    max-width: 100%;
+  }
 }

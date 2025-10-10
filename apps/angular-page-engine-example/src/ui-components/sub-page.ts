@@ -8,8 +8,10 @@ import { NavigationComponent } from '../../../../libs/page-engine/src/lib/page-e
   selector: 'app-sub-page',
   imports: [AsyncPipe, RouterOutlet, NavigationComponent],
   template: ` <div>
-    <h2>{{ title | async }}</h2>
-    <lib-nav [routes]="routes" [basePath]="basePath" />
+    <header>
+      <h2>{{ title | async }}</h2>
+      <lib-nav [routes]="routes" [basePath]="basePath" />
+    </header>
     <div>
       <router-outlet />
     </div>
