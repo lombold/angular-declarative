@@ -9,7 +9,7 @@ interface NavItem {
 }
 
 @Component({
-  selector: 'lib-nav',
+  selector: 'ad-nav',
   imports: [RouterLink, NgTemplateOutlet],
   template: `
     <nav>

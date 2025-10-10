@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { HeaderComponent } from './ui-components/header.component';
 
 @Component({
-  selector: 'app-custom-page',
+  selector: 'ad-custom-page',
   template: `<h2>This is a custom page</h2>`,
 })
 class CustomPageComponent {}

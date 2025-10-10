@@ -23,12 +23,22 @@ export default [
           ],
         },
       ],
-      '@angular-eslint/component-selector': false,
     },
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts', '**/*.js', '**/*.jsx', '**/*.cjs', '**/*.mjs'],
     // Override or add rules here
     rules: {},
+  },
+  {
+    files: ['**/*.json'],
+    rules: {
+      '@nx/dependency-checks': [
+        'error',
+        {
+          checkMissingDependencies: false,
+        },
+      ],
+    },
   },
 ];

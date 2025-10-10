@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 
 @Component({
-  selector: 'html-page',
+  selector: 'ad-html-page',
   template: `
     <h1>{{ title | async }}</h1>
     <article [innerHtml]="(pageData | async)!['html']"></article>

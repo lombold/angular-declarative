@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 
 @Component({
-  selector: 'text-page',
+  selector: 'ad-text-page',
   template: `
     <h1>{{ title | async }}</h1>
     <article class="show-linebreaks">

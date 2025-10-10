@@ -13,13 +13,13 @@ import {
   signal,
   viewChild,
   ViewContainerRef,
-} from "@angular/core";
-import { Process, Step } from "./process.type";
-import { ProcessService } from "./process.service";
-import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+} from '@angular/core';
+import { Process, Step } from './process.type';
+import { ProcessService } from './process.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: "app-process",
+  selector: 'ad-process',
   imports: [],
   template: ` <div #processContainer></div> `,
   styles: ``,
@@ -32,7 +32,7 @@ export class ProcessComponent<In, Out> implements AfterViewInit {
   private readonly processService = inject(ProcessService);
   private readonly destoryRef = inject(DestroyRef);
   private readonly injector = inject(Injector);
-  private readonly processContainer = viewChild.required("processContainer", {
+  private readonly processContainer = viewChild.required('processContainer', {
     read: ViewContainerRef,
   });
 
@@ -47,7 +47,7 @@ export class ProcessComponent<In, Out> implements AfterViewInit {
 
   private prechecks() {
     if (!this.processContainer()) {
-      throw new Error("Process container is not defined.");
+      throw new Error('Process container is not defined.');
     }
   }
 
@@ -94,7 +94,7 @@ export class ProcessComponent<In, Out> implements AfterViewInit {
 
   private previous() {
     if (this.currentStepIndex <= 0) {
-      throw new Error("Cannot go back, already at the first step.");
+      throw new Error('Cannot go back, already at the first step.');
     }
     this.currentStepIndex--;
     this.renderStep(this.process().at(this.currentStepIndex));
@@ -102,22 +102,16 @@ export class ProcessComponent<In, Out> implements AfterViewInit {
 
   private renderStep(step?: Step<any, any>) {
     if (!step) {
-      throw new Error("Step is not defined.");
+      throw new Error('Step is not defined.');
     }
 
-    console.log(
-      `Rendering step: ${step.component.name} at index ${this.currentStepIndex}`,
-    );
+    console.log(`Rendering step: ${step.component.name} at index ${this.currentStepIndex}`);
     this.processContainer().clear();
     this.processContainer()?.createComponent(step.component, {
       bindings: [
-        inputBinding("input", () => step.input),
-        outputBinding("output", (stepOut: unknown) =>
-          this.currentStepOutput.set(stepOut),
-        ),
-        outputBinding("valid", (isValid: boolean) =>
-          this.currentStepValid.set(isValid),
-        ),
+        inputBinding('input', () => step.input),
+        outputBinding('output', (stepOut: unknown) => this.currentStepOutput.set(stepOut)),
+        outputBinding('valid', (isValid: boolean) => this.currentStepValid.set(isValid)),
       ],
     });
   }

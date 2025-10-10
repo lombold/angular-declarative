@@ -4,7 +4,7 @@ import { NgComponentOutlet } from '@angular/common';
 import { HEADER_COMPONENT } from '../tokens';
 
 @Component({
-  selector: 'app-root',
+  selector: 'ad-root',
   template: `
     <ng-container *ngComponentOutlet="headerComponent" />
     <main>

@@ -20,7 +20,7 @@
   "nxCloudId": "68a35d74feeb77164c816062",
   "targetDefaults": {
     "@angular/build:application": {
-      "cache": true,
+      "cache": false,
       "dependsOn": [
         "^build"
       ],
@@ -30,7 +30,7 @@
       ]
     },
     "@nx/eslint:lint": {
-      "cache": true,
+      "cache": false,
       "inputs": [
         "default",
         "{workspaceRoot}/.eslintrc.json",
@@ -39,14 +39,14 @@
       ]
     },
     "@nx/vite:test": {
-      "cache": true,
+      "cache": false,
       "inputs": [
         "default",
         "^production"
       ]
     },
     "@nx/angular:package": {
-      "cache": true,
+      "cache": false,
       "dependsOn": [
         "^build"
       ],

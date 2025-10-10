@@ -5,7 +5,7 @@ import { NavigationComponent } from '../navigation.component';
 import { PageComponent } from './page.component';
 
 @Component({
-  selector: 'app-sub-page',
+  selector: 'ad-sub-page',
   imports: [AsyncPipe, RouterOutlet, NavigationComponent],
   template: ` <div>
     <header>

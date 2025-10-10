@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 
 @Component({
-  selector: 'page',
+  selector: 'ad-page',
   template: ` <h1>{{ title | async }}</h1> `,
   imports: [AsyncPipe],
 })

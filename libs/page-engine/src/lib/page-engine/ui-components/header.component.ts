@@ -3,8 +3,8 @@ import { NavigationComponent } from './navigation.component';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'header',
-  template: ` <lib-nav [routes]="routes" /> `,
+  selector: 'ad-header',
+  template: ` <ad-nav [routes]="routes" /> `,
   imports: [NavigationComponent],
 })
 export class HeaderComponent {
