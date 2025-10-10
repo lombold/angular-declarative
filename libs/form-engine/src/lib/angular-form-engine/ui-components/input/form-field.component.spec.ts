@@ -39,7 +39,7 @@ describe('FormComponent', () => {
       imports: [FormComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FormComponent);
+    fixture = TestBed.createComponent(FormComponent<TestForm, ADForm<TestForm>, ToForm<TestForm>>);
     component = fixture.componentInstance;
     // Provide required form input
     fixture.componentRef.setInput('form', dummyForm);
