@@ -10,7 +10,7 @@ import { PageComponent } from './page.component';
   template: ` <div>
     <header>
       <h2>{{ title | async }}</h2>
-      <lib-nav [routes]="routes" [basePath]="basePath" />
+      <ad-nav [routes]="routes" [basePath]="basePath" />
     </header>
     <div>
       <router-outlet />
