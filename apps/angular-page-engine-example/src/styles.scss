@@ -27,7 +27,7 @@ app-root {
   min-height: 100vh;
 }
 
-header {
+ad-header, header {
   background: var(--color-white);
   border-bottom: 1px solid var(--color-border);
   padding: 0.75rem var(--spacing);
@@ -35,7 +35,7 @@ header {
 
 /* Make subpage fill full width */
 main,
-app-sub-page {
+ad-sub-page {
   display: block;
   width: 100%;
   padding: 2rem 3rem;
@@ -43,7 +43,7 @@ app-sub-page {
 }
 
 /* === Navigation === */
-lib-nav nav ul {
+ad-nav nav ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
@@ -52,25 +52,25 @@ lib-nav nav ul {
   padding: 0;
 }
 
-lib-nav nav a {
+ad-nav nav a {
   text-decoration: none;
   color: var(--color-primary);
   font-weight: 500;
   transition: color 0.2s;
 }
 
-lib-nav nav a:hover {
+ad-nav nav a:hover {
   color: var(--color-primary-hover);
 }
 
-/* === Sub page header === */
-app-sub-page header {
+/* === Sub page ad-header === */
+ad-sub-page header {
   border-bottom: 1px solid var(--color-border);
   margin-bottom: var(--spacing);
   padding-bottom: 0.5rem;
 }
 
-app-sub-page h2 {
+ad-sub-page h2 {
   margin: 0 0 0.5rem;
   font-size: 1.4rem;
 }
@@ -157,7 +157,7 @@ button[disabled] {
 
 /* === Responsive === */
 @media (max-width: 700px) {
-  main, app-sub-page {
+  main, ad-sub-page {
     padding: 1rem;
   }
 

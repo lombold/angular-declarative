@@ -56,6 +56,9 @@
     "serve": {
       "continuous": true,
       "executor": "@angular/build:dev-server",
+      "options": {
+        "port": 4203
+      },
       "configurations": {
         "production": {
           "buildTarget": "angular-page-engine-example:build:production"
@@ -80,7 +83,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "angular-page-engine-example:build",
-        "port": 4200,
+        "port": 4203,
         "staticFilePath": "dist/apps/angular-page-engine-example/browser",
         "spa": true
       }
