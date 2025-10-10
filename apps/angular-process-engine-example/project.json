@@ -8,11 +8,15 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/angular-process-engine-example",
         "browser": "apps/angular-process-engine-example/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/angular-process-engine-example/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -21,7 +25,9 @@
             "input": "apps/angular-process-engine-example/public"
           }
         ],
-        "styles": ["apps/angular-process-engine-example/src/styles.scss"]
+        "styles": [
+          "apps/angular-process-engine-example/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -71,13 +77,6 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
-      "options": {
-        "reportsDirectory": "../../coverage/apps/angular-process-engine-example"
-      }
     },
     "serve-static": {
       "continuous": true,

@@ -8,11 +8,15 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/angular-declarative-example",
         "browser": "apps/angular-declarative-example/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/angular-declarative-example/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -21,7 +25,9 @@
             "input": "apps/angular-declarative-example/public"
           }
         ],
-        "styles": ["apps/angular-declarative-example/src/styles.scss"]
+        "styles": [
+          "apps/angular-declarative-example/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -68,13 +74,6 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
-      "options": {
-        "reportsDirectory": "../../coverage/apps/angular-declarative-example"
-      }
     },
     "serve-static": {
       "continuous": true,
