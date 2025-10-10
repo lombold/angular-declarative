@@ -2,7 +2,7 @@
   "name": "page-engine",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/page-engine/src",
-  "prefix": "ad",
+  "prefix": "app",
   "projectType": "library",
   "release": {
     "version": {

@@ -4,7 +4,8 @@ import { NgComponentOutlet } from '@angular/common';
 import { HEADER_COMPONENT } from '../tokens';
 
 @Component({
-  selector: 'ad-root',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'app-root',
   template: `
     <ng-container *ngComponentOutlet="headerComponent" />
     <main>

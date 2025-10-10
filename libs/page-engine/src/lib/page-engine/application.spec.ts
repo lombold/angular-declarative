@@ -47,7 +47,7 @@ describe('Application', () => {
   it('should display the header', async () => {
     const app = await application(HeaderComponent);
 
-    expect(debugElement.query(By.css('header'))).toBeTruthy();
+    expect(debugElement.query(By.css('ad-header'))).toBeTruthy();
     app.destroy();
   });
 
