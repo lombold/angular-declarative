@@ -1,5 +1,10 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { App } from './app/app';
+import { application, HeaderComponent } from '@lombold/angular-page-engine';
+import { inject } from '@angular/core';
+import { userForm } from './forms/user/user-form';
+import { UserService } from './forms/user/user.service';
+import { formPage } from '@lombold/angular-declarative';
 
-bootstrapApplication(App, appConfig).catch((err) => console.error(err));
+application(
+  HeaderComponent,
+  formPage('Create User', userForm, (value) => inject(UserService).saveUser(value)),
+).catch((reason) => console.log(reason));

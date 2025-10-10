@@ -1,6 +1,6 @@
 import { ADForm } from '@lombold/angular-form-engine';
-import { User, UserType } from '../ui-components/user';
 import { Validators } from '@angular/forms';
+import { User, UserType } from './user';
 
 export const userForm: ADForm<User> = {
   title: 'User Form',

@@ -1,1 +1,1 @@
-export * from './lib/declarative/declarative';
+export * from './lib/declarative/application-extensions';

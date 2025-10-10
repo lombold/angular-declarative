@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { PageComponent } from '../../../../libs/page-engine/src/lib/page-engine/ui-components/pages/page.component';
 import { AsyncPipe } from '@angular/common';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
-import { NavigationComponent } from '../../../../libs/page-engine/src/lib/page-engine/ui-components/navigation.component';
+import { NavigationComponent } from '../navigation.component';
+import { PageComponent } from './page.component';
 
 @Component({
   selector: 'app-sub-page',
@@ -17,13 +17,13 @@ import { NavigationComponent } from '../../../../libs/page-engine/src/lib/page-e
     </div>
   </div>`,
   styles: `
-    :host {
-      display: block;
-    }
+      :host {
+          display: block;
+      }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SubPage extends PageComponent {
+export class SubPageComponent extends PageComponent {
   protected readonly activeRoute = inject(ActivatedRoute);
   protected readonly routes = this.activeRoute.routeConfig?.children ?? [];
   protected readonly basePath = this.activeRoute.snapshot.pathFromRoot

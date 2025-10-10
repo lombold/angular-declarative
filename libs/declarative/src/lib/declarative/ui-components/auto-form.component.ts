@@ -8,14 +8,14 @@ import {
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ADForm, FormComponent } from '@lombold/angular-form-engine';
-import { PageComponent } from '../../../../libs/page-engine/src/lib/page-engine/ui-components/pages/page.component';
 import { map, switchMap, take } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { SubmitFunction } from '@lombold/angular-page-engine';
+import { PageComponent } from '@lombold/angular-page-engine';
+import { SubmitFunction } from '../application-extensions';
 
 @Component({
-  selector: 'app-form',
+  selector: 'ad-auto-form',
   imports: [ReactiveFormsModule, FormComponent, AsyncPipe],
   template: `
     @if (form$ | async; as form) {
@@ -23,9 +23,9 @@ import { SubmitFunction } from '@lombold/angular-page-engine';
     }
   `,
   styles: `
-    :host {
-      display: block;
-    }
+      :host {
+          display: block;
+      }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -44,7 +44,7 @@ export class AutoFormComponent<TValue> extends PageComponent {
         takeUntilDestroyed(this.destroyRef),
         switchMap((fn) => {
           return runInInjectionContext(this.injector, () => fn(value));
-        })
+        }),
       )
       .subscribe();
   }

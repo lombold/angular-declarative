@@ -1,9 +1,5 @@
-import { application, formPage, HeaderComponent, htmlPage, page, textPage } from '@lombold/angular-page-engine';
+import { application, HeaderComponent, htmlPage, page, subPage, textPage } from '@lombold/angular-page-engine';
 import { CustomComponent } from './ui-components/custom-component';
-import { SubPage } from './ui-components/sub-page';
-import { userForm } from './forms/user-form';
-import { inject } from '@angular/core';
-import { UserService } from './services/user.service';
 
 application(
   HeaderComponent,
@@ -28,9 +24,8 @@ application(
   `,
   ),
   page('Custom Component', CustomComponent),
-  page('Component with children', SubPage, [
+  subPage('Component with children', [
     htmlPage('Child 1', '<p>Wichtige Seite</p>'),
     htmlPage('Child 2', '<a href="https://example.com">Example Link</a>'),
-    formPage('User Form', userForm, (value) => inject(UserService).saveUser(value)),
   ]),
 ).catch((reason) => console.log(reason));

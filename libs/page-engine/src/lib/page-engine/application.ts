@@ -8,9 +8,7 @@ import { HeaderComponent } from './ui-components/header.component';
 import { PageComponent } from './ui-components/pages/page.component';
 import { TextPageComponent } from './ui-components/pages/text-page.component';
 import { HtmlPageComponent } from './ui-components/pages/html-page.component';
-import { ADForm } from '@lombold/angular-form-engine';
-import { AutoFormComponent } from '../../../../../apps/angular-page-engine-example/src/ui-components/auto-form.component';
-import { ObservableInput } from 'rxjs';
+import { SubPageComponent } from './ui-components/pages/sub-page.component';
 
 export function application<THeader extends HeaderComponent>(
   header?: Type<THeader>,
@@ -29,7 +27,14 @@ export function application<THeader extends HeaderComponent>(
   });
 }
 
-export function page(title: string, component: Type<any> = PageComponent, subPages?: Page[]): Page {
+export function page(title: string, component: Type<any> = PageComponent): Page {
+  return {
+    title,
+    component,
+  };
+}
+
+export function subPage(title: string, subPages?: Page[], component: Type<any> = SubPageComponent): Page {
   return {
     title,
     component,
@@ -53,20 +58,6 @@ export function htmlPage(title: string, html: string): Page {
     component: HtmlPageComponent,
     data: {
       html,
-    },
-  };
-}
-
-export type SubmitFunction<T> = (value: T) => ObservableInput<unknown>;
-
-export function formPage<T>(title: string, form: ADForm<T>, submitFn: SubmitFunction<T>): Page {
-  return {
-    title,
-    component: AutoFormComponent<T>,
-    data: {
-      title,
-      form,
-      submitFn,
     },
   };
 }
