@@ -4,7 +4,11 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'ad-header',
-  template: ` <ad-nav [routes]="routes" /> `,
+  template: `
+    <header>
+      <ad-nav [routes]="routes" />
+    </header>
+  `,
   imports: [NavigationComponent],
 })
 export class HeaderComponent {

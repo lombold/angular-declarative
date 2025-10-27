@@ -27,15 +27,14 @@ app-root {
   min-height: 100vh;
 }
 
-ad-header, header {
+header {
   background: var(--color-white);
   border-bottom: 1px solid var(--color-border);
   padding: 0.75rem var(--spacing);
 }
 
 /* Make subpage fill full width */
-main,
-ad-sub-page {
+main {
   display: block;
   width: 100%;
   padding: 2rem 3rem;
@@ -43,7 +42,7 @@ ad-sub-page {
 }
 
 /* === Navigation === */
-ad-nav nav ul {
+nav ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
@@ -52,25 +51,25 @@ ad-nav nav ul {
   padding: 0;
 }
 
-ad-nav nav a {
+nav a {
   text-decoration: none;
   color: var(--color-primary);
   font-weight: 500;
   transition: color 0.2s;
 }
 
-ad-nav nav a:hover {
+nav a:hover {
   color: var(--color-primary-hover);
 }
 
-/* === Sub page ad-header === */
-ad-sub-page header {
+/* === Sub page header === */
+main header {
   border-bottom: 1px solid var(--color-border);
   margin-bottom: var(--spacing);
   padding-bottom: 0.5rem;
 }
 
-ad-sub-page h2 {
+main h2 {
   margin: 0 0 0.5rem;
   font-size: 1.4rem;
 }
@@ -157,7 +156,7 @@ button[disabled] {
 
 /* === Responsive === */
 @media (max-width: 700px) {
-  main, ad-sub-page {
+  main {
     padding: 1rem;
   }
 
