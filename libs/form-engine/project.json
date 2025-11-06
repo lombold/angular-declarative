@@ -1,5 +1,5 @@
 {
-  "name": "angular-form-engine",
+  "name": "form-engine",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/form-engine/src",
   "prefix": "ad",
