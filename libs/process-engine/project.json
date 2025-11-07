@@ -1,14 +1,12 @@
 {
-  "name": "process-engine",
+  "name": "@lombold/angular-process-engine",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/process-engine/src",
   "prefix": "ad",
   "projectType": "library",
   "release": {
     "version": {
-      "manifestRootsToUpdate": [
-        "dist/{projectRoot}"
-      ],
+      "manifestRootsToUpdate": ["dist/{projectRoot}"],
       "currentVersionResolver": "git-tag",
       "fallbackCurrentVersionResolver": "disk"
     }
@@ -17,9 +15,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "libs/process-engine/ng-package.json",
         "tsConfig": "libs/process-engine/tsconfig.lib.json"
@@ -39,9 +35,7 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
         "reportsDirectory": "../../coverage/libs/process-engine"
       }
