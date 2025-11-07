@@ -1,5 +1,5 @@
 {
-  "name": "declarative",
+  "name": "@lombold/angular-declarative",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/declarative/src",
   "prefix": "ad",
