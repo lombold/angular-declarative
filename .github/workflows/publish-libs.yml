@@ -36,13 +36,27 @@ jobs:
           npx nx run-many --target=build --projects=libs/form-engine,libs/page-engine,libs/process-engine,libs/declarative --parallel=false
 
       - name: Prepare npm authentication
-        if: ${{ secrets.NPM_TOKEN && github.event.inputs.publish_to == 'npm' }}
+        if: ${{ github.event.inputs.publish_to == 'npm' }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          # If NPM_TOKEN is not provided, skip preparing npmrc (avoids exposing secrets in workflow expressions)
+          if [ -z "${NPM_TOKEN:-}" ]; then
+            echo "NPM_TOKEN not set; skipping npm auth preparation"
+            exit 0
+          fi
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
 
       - name: Publish libraries to npm
-        if: ${{ secrets.NPM_TOKEN && github.event.inputs.publish_to == 'npm' }}
+        if: ${{ github.event.inputs.publish_to == 'npm' }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          # If NPM_TOKEN is not provided, skip publishing
+          if [ -z "${NPM_TOKEN:-}" ]; then
+            echo "NPM_TOKEN not set; skipping publish step"
+            exit 0
+          fi
           set -euo pipefail
           pkgs=(form-engine page-engine process-engine declarative)
           for pkg in "${pkgs[@]}"; do
@@ -84,4 +98,3 @@ jobs:
               fi
             fi
           done
-
