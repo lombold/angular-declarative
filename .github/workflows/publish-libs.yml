@@ -22,18 +22,22 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Use Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build libraries (nx)
+      - name: Install dependencies (bun)
         run: |
-          npx nx run-many --target=build --projects=libs/form-engine,libs/page-engine,libs/process-engine,libs/declarative --parallel=false
+          bun install --frozen-lockfile
+
+      - name: Build libraries (nx via bunx)
+        run: |
+          bunx nx run-many --target=build --projects=libs/form-engine,libs/page-engine,libs/process-engine,libs/declarative --parallel=false
 
       - name: Prepare npm authentication
         if: ${{ github.event.inputs.publish_to == 'npm' }}
